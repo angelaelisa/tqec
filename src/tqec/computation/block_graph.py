@@ -491,6 +491,63 @@ class BlockGraph:
             write_html_filepath=write_html_filepath,
         )
 
+    def relabel_cubes(self, label_mapping: Mapping[Position3D | str, str]) -> None:
+        """Relabel cubes in the block graph.
+
+        This method updates the labels of cubes in the graph, based on a mapping
+        from either a cube position or its existing label to a new label.
+
+        Args:
+            label_mapping: A mapping from either Position3D or current cube label (str)
+                to the new label to assign.
+
+        Raises:
+            TQECException: If a cube is not found for the given key, if a port label
+                is reused, or if the new label conflicts with existing port labels.
+        """
+        port_labels = {cube.label for cube in self.cubes if cube.is_port}
+        assigned_new_labels: set[str] = set()
+
+        for key, new_label in label_mapping.items():
+            if not new_label:
+                raise TQECException("New label must be non-empty.")
+
+            if isinstance(key, Position3D):
+                matching_cubes = [cube for cube in self.cubes if cube.position == key]
+            elif isinstance(key, str):
+                matching_cubes = [cube for cube in self.cubes if cube.label == key]
+            else:
+                raise TQECException(
+                    f"Invalid identifier '{key}'. Must be Position3D or str."
+                )
+
+            if not matching_cubes:
+                raise TQECException(f"No cube found for identifier '{key}'.")
+
+            is_port_relabel = any(cube.is_port for cube in matching_cubes)
+
+            if is_port_relabel:
+                if new_label in port_labels:
+                    raise TQECException(
+                        f"Port label '{new_label}' is already assigned to another port."
+                    )
+                if new_label in assigned_new_labels:
+                    raise TQECException(
+                        f"Port label '{new_label}' is reused multiple times."
+                    )
+                assigned_new_labels.add(new_label)
+            else:
+                if new_label in port_labels:
+                    raise TQECException(
+                        f"The label '{new_label}' belongs to a port and cannot be reused by a non-port cube."
+                    )
+
+            for cube in matching_cubes:
+                updated_cube = Cube(position=cube.position, kind=cube.kind, label=new_label)
+                self._graph.add_node(
+                    cube.position, **{self._NODE_DATA_KEY: updated_cube}
+                )
+
     def shift_by(self, dx: int = 0, dy: int = 0, dz: int = 0) -> BlockGraph:
         """Shift the whole graph by the given offset in the x, y, z directions and
         creat a new graph with the shifted positions.
