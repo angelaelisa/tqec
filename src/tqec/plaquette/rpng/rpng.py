@@ -15,7 +15,7 @@ class PauliBasis(Enum):
     Z = "z"
 
     def __str__(self) -> str:
-        return self.value
+        return self.value  # pragma: no cover
 
     def to_extended_basis(self) -> ExtendedBasis:
         """Return ``self`` as an extended basis."""
@@ -29,12 +29,12 @@ class ExtendedBasis(Enum):
     H = "h"
 
     def __str__(self) -> str:
-        return self.value
+        return self.value  # pragma: no cover
 
 
 @dataclass(frozen=True)
 class RPNG:
-    """Represents a single ``RPNG`` string.
+    """Represent a single ``RPNG`` string.
 
     ## Format specification
 
@@ -194,7 +194,7 @@ class RPNGDescription:
     ancilla: RG = field(default=RG(PauliBasis.X, PauliBasis.X))
 
     def __post_init__(self) -> None:
-        """Validation of the initialization arguments.
+        """Validate the initialization arguments.
 
         Constraints:
         - the n values for the corners must be unique
@@ -264,12 +264,26 @@ class RPNGDescription:
     @property
     def has_reset(self) -> bool:
         """Return ``True`` if ``self`` contains at least one corner with a reset."""
-        return any(corner.get_r_op() not in {None, "H"} for corner in self.corners)
+        return any(
+            corner.get_r_op()
+            not in {
+                None,
+                "H",
+            }
+            for corner in self.corners
+        )
 
     @property
     def has_measurement(self) -> bool:
         """Return ``True`` if ``self`` contains at least one corner with a measurement."""
-        return any(corner.get_g_op() not in {None, "H"} for corner in self.corners)
+        return any(
+            corner.get_g_op()
+            not in {
+                None,
+                "H",
+            }
+            for corner in self.corners
+        )
 
     def __str__(self) -> str:
         return " ".join(str(rpng) for rpng in self.corners)

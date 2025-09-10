@@ -33,10 +33,10 @@ class RGBA:
             A new RGBA with the same color but a different alpha value.
 
         """
-        return RGBA(self.r, self.g, self.b, a)
+        return RGBA(self.r, self.g, self.b, a)  # pragma: no cover
 
     def as_floats(self) -> tuple[float, float, float, float]:
-        """Returns the color as a tuple of floats. RGB values are normalized to the range [0, 1].
+        """Return the color as a tuple of floats. RGB values are normalized to the range [0, 1].
 
         Returns:
             Length 4 tuple of floats representing the color.
@@ -51,7 +51,7 @@ class RGBA:
             The color as a hexadecimal string.
 
         """
-        return f"#{self.r:02x}{self.g:02x}{self.b:02x}"
+        return f"#{self.r:02x}{self.g:02x}{self.b:02x}"  # pragma: no cover
 
 
 class TQECColor(Enum):
@@ -81,7 +81,7 @@ class TQECColor(Enum):
             return RGBA(0, 0, 255, 0.8)
 
     def with_zx_flipped(self) -> TQECColor:
-        """Returns a ``X`` or ``Z`` color from a ``Z`` or ``X`` color and vice versa."""
+        """Return a ``X`` or ``Z`` color from a ``Z`` or ``X`` color and vice versa."""
         if self == TQECColor.X:
             return TQECColor.Z
         if self == TQECColor.Z:

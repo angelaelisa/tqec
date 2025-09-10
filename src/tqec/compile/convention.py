@@ -38,13 +38,13 @@ class ConventionTriplet:
 
 @dataclass(frozen=True)
 class Convention:
-    """Represents a convention to implement blocks."""
+    """Represent a convention to implement blocks."""
 
     name: str
     triplet: ConventionTriplet
 
     def __str__(self) -> str:
-        return self.name
+        return self.name  # pragma: no cover
 
 
 FIXED_BULK_CONVENTION = Convention(

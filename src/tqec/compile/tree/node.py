@@ -31,7 +31,7 @@ def contains_only_layout_or_composed_layers(
 class NodeWalker:
     def visit_node(self, node: LayerNode) -> None:
         """Interface called when ``node`` is visited, before recursing in children."""
-        pass
+        pass  # pragma: no cover
 
     def enter_node(self, node: LayerNode) -> None:
         """Interface called when entering ``node``."""
@@ -89,7 +89,7 @@ class LayerNode:
 
     @property
     def is_leaf(self) -> bool:
-        """Returns ``True`` if ``self`` does not have any children and so is a leaf node."""
+        """Return ``True`` if ``self`` does not have any children and so is a leaf node."""
         return isinstance(self._layer, LayoutLayer)
 
     @property
@@ -99,12 +99,12 @@ class LayerNode:
 
     @property
     def repetitions(self) -> LinearFunction | None:
-        """Returns the number of repetitions of the node if ``self.is_repeated`` else ``None``."""
+        """Return the number of repetitions of the node if ``self.is_repeated`` else ``None``."""
         return self._layer.repetitions if isinstance(self._layer, RepeatedLayer) else None
 
     def to_dict(self) -> dict[str, Any]:
         """Return a dictionary representation of ``self``."""
-        return {
+        return {  # pragma: no cover
             "layer": type(self._layer).__name__,
             "children": [child.to_dict() for child in self._children],
             "annotations": {k: annotation.to_dict() for k, annotation in self._annotations.items()},

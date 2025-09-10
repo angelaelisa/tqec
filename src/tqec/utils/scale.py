@@ -28,7 +28,7 @@ from tqec.utils.position import PhysicalQubitShape2D, PlaquetteShape2D, Shape2D,
 
 @dataclass(frozen=True)
 class LinearFunction:
-    """Represents a linear function.
+    """Represent a linear function.
 
     A linear function is fully described with a slope and an offset.
 
@@ -122,7 +122,7 @@ class LinearFunction:
         return -(other.offset - self.offset) / (other.slope - self.slope)
 
     @staticmethod
-    def _from(obj: LinearFunction | float) -> LinearFunction:
+    def _from(obj: LinearFunction | float) -> LinearFunction:  # pragma: no cover
         if isinstance(obj, (float, int)):
             return LinearFunction(0, obj)
         else:

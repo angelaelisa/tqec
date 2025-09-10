@@ -19,7 +19,7 @@ class WithTemporalFootprint(ABC):
     @property
     @abstractmethod
     def scalable_timesteps(self) -> LinearFunction:
-        """Returns the number of timesteps needed to implement the object.
+        """Return the number of timesteps needed to implement the object.
 
         Returns:
             the number of timesteps needed to implement the object as an
@@ -30,7 +30,7 @@ class WithTemporalFootprint(ABC):
         pass
 
     def timesteps(self, k: int) -> int:
-        """Returns the number of timesteps needed for the provided scaling parameter ``k``.
+        """Return the number of timesteps needed for the provided scaling parameter ``k``.
 
         Args:
             k: scaling parameter.
@@ -40,7 +40,7 @@ class WithTemporalFootprint(ABC):
             the provided scaling parameter ``k``.
 
         """
-        return self.scalable_timesteps.integer_eval(k)
+        return self.scalable_timesteps.integer_eval(k)  # pragma: no cover
 
     @abstractmethod
     def with_temporal_borders_replaced(
@@ -73,7 +73,7 @@ class WithTemporalFootprint(ABC):
     @property
     @abstractmethod
     def scalable_num_moments(self) -> LinearFunction:
-        """Returns the number of moments needed to implement the object,.
+        """Return the number of moments needed to implement the object,.
 
         Returns:
             the number of moments needed to implement the object as an
@@ -84,7 +84,7 @@ class WithTemporalFootprint(ABC):
         pass
 
     def num_moments(self, k: int) -> int:
-        """Returns the number of moments needed for the provided scaling parameter ``k``.
+        """Return the number of moments needed for the provided scaling parameter ``k``.
 
         Args:
             k: scaling parameter.
@@ -94,4 +94,4 @@ class WithTemporalFootprint(ABC):
             the provided scaling parameter ``k``.
 
         """
-        return self.scalable_num_moments.integer_eval(k)
+        return self.scalable_num_moments.integer_eval(k)  # pragma: no cover

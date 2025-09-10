@@ -52,7 +52,7 @@ class Vec3D:
 
 
 class Position2D(Vec2D):
-    """Represents a position on a 2-dimensional plane.
+    """Represent a position on a 2-dimensional plane.
 
     Warning:
         This class represents a position without any knowledge of the coordinate
@@ -64,7 +64,7 @@ class Position2D(Vec2D):
 
     def with_block_coordinate_system(self) -> BlockPosition2D:
         """Return a :class:`.BlockPosition2D` from ``self``."""
-        return BlockPosition2D(self.x, self.y)
+        return BlockPosition2D(self.x, self.y)  # pragma: no cover
 
     def is_neighbour(self, other: Position2D) -> bool:
         """Check if the other position is near to this position, i.e. Manhattan distance is 1."""
@@ -76,19 +76,19 @@ class Position2D(Vec2D):
 
 
 class PhysicalQubitPosition2D(Position2D):
-    """Represents the position of a physical qubit on a 2-dimensional plane."""
+    """Represent the position of a physical qubit on a 2-dimensional plane."""
 
 
 class PlaquettePosition2D(Position2D):
-    """Represents the position of a plaquette on a 2-dimensional plane."""
+    """Represent the position of a plaquette on a 2-dimensional plane."""
 
     def get_origin_position(self, shift: Shift2D) -> PhysicalQubitPosition2D:
         """Return the position of the plaquette origin."""
-        return PhysicalQubitPosition2D(shift.x * self.x, shift.y * self.y)
+        return PhysicalQubitPosition2D(shift.x * self.x, shift.y * self.y)  # pragma: no cover
 
 
 class BlockPosition2D(Position2D):
-    """Represents the position of a block on a 2-dimensional plane."""
+    """Represent the position of a block on a 2-dimensional plane."""
 
     def get_top_left_plaquette_position(self, block_shape: PlaquetteShape2D) -> PlaquettePosition2D:
         """Return the position of the top-left plaquette of the block."""
@@ -112,19 +112,19 @@ class Shape2D(Vec2D):
 
 
 class PlaquetteShape2D(Shape2D):
-    """Represents a 2-dimensional shape using plaquette coordinate system."""
+    """Represent a 2-dimensional shape using plaquette coordinate system."""
 
 
 class PhysicalQubitShape2D(Shape2D):
-    """Represents a 2-dimensional shape using physical qubit coordinate system."""
+    """Represent a 2-dimensional shape using physical qubit coordinate system."""
 
 
 class Shift2D(Vec2D):
     def __mul__(self, factor: int) -> Shift2D:
-        return Shift2D(factor * self.x, factor * self.y)
+        return Shift2D(factor * self.x, factor * self.y)  # pragma: no cover
 
     def __rmul__(self, factor: int) -> Shift2D:
-        return self.__mul__(factor)
+        return self.__mul__(factor)  # pragma: no cover
 
 
 class Position3D(Vec3D):
@@ -164,7 +164,7 @@ class Position3D(Vec3D):
 
 
 class BlockPosition3D(Position3D):
-    """Represents the position of a block in 3D space."""
+    """Represent the position of a block in 3D space."""
 
     def as_2d(self) -> BlockPosition2D:
         """Return ``self`` as a 2-dimensional position, ignoring the ``z`` coordinate."""
