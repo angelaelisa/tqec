@@ -9,7 +9,7 @@
 [![docs](https://github.com/tqec/tqec/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/tqec/tqec/actions/workflows/gh-pages.yml)
 [![Stars](https://img.shields.io/github/stars/tqec/tqec.svg)](https://github.com/tqec/tqec/stargazers)
 [![Star History Chart](https://img.shields.io/badge/📈-Star%20History-blue?style=flat-square)](https://www.star-history.com/#tqec/tqec&Date)
-[![Legal Notice](https://img.shields.io/badge/docs-legal%20notice-blue)](https://tqec.github.io/tqec/legal_notice.html)
+[![Ethical Notice](https://img.shields.io/badge/docs-ethical%20notice-blue)](https://tqec.github.io/tqec/ethical_notice.html)
 [![Licensed under the Apache 2.0 open-source license](https://img.shields.io/badge/License-Apache%202.0-blue.svg?logo=opensourceinitiative)](https://github.com/tqec/tqec/blob/main/LICENSE)
 
 TQEC (Topological Quantum Error Correction) is a design automation software for representing,
@@ -35,11 +35,20 @@ Documentation is available at <https://tqec.github.io/tqec/index.html>
 
 ## Installation
 
-Currently, you need to install `tqec` from source:
+Currently, you need to install `tqec` from source with `pip` or [`uv`](https://docs.astral.sh/uv/):
 
-```sh
+````{tab-set-code}
+
+
+```{code-block} pip
 python -m pip install git+https://github.com/tqec/tqec.git
 ```
+
+```{code-block} uv
+uv pip install git+https://github.com/tqec/tqec.git
+```
+
+````
 
 For a more detailed installation guide and common troubleshooting tips, see the [installation page](https://tqec.github.io/tqec/user_guide/installation.html) in the documentation.
 
@@ -99,13 +108,13 @@ All the resources and group meeting recordings are available at [this link](http
 Please join the [Google group](https://groups.google.com/g/tqec-design-automation) to receive more updates and information!
 
 ---
-> ### **Legal Notice**
+> ### **Ethical notice**
 >
 > This library is intended for **academic, educational, and civilian research only**, in the field of **fault-tolerant quantum computing**, particularly in **surface code compilation** and **topological error correction**.
 >
 > It is made freely and publicly available without access restrictions, in the interest of advancing **open scientific and academic collaboration**.
 >
-> **Use in military, surveillance, or dual-use applications is strictly prohibited.**
+> The maintainers request that users and contributors **refrain from engaging in, supporting, or facilitating military, surveillance, or dual-use applications**.
 >
-> Please, review the full [`LEGAL_NOTICE.md`](https://github.com/tqec/tqec/blob/main/LEGAL_NOTICE.md) for important terms regarding **export control**, **ethical use**, and **contributor responsibilities**.
+> Please, review the full [`ETHICAL_NOTICE.md`](https://github.com/tqec/tqec/blob/main/ETHICAL_NOTICE.md) for important terms regarding **export control**, **ethical use**, and **contributor responsibilities**.
 ---
